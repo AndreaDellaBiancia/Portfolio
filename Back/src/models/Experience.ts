@@ -3,14 +3,12 @@ import {
   PrimaryGeneratedColumn,
   Column,
   ManyToOne,
-  OneToMany,
   ManyToMany,
   JoinTable,
 } from "typeorm";
 import EffectIn from "./EffectIn";
 import EffectOut from "./EffectOut";
-import LogoTechno from "./Image";
-import Image from "./Image";
+import LogoTechno from "./LogoTechno";
 
 @Entity("Experience")
 export default class Experience {
@@ -19,6 +17,12 @@ export default class Experience {
 
   @Column({ type: "varchar" })
   title: string;
+
+  @Column({ type: "varchar" })
+  imgTitle: string;
+
+  @Column({ type: "varchar" })
+  imgTitleSize: string;
 
   @Column({ type: "varchar" })
   subtitle: string;
@@ -44,7 +48,7 @@ export default class Experience {
   @ManyToOne(() => EffectOut, (effectOut) => effectOut.experiences)
   effectOut: EffectOut;
 
-  @ManyToMany(() => Image)
+  @ManyToMany(() => LogoTechno)
   @JoinTable()
-  images: Image[];
+  logosTechno: LogoTechno[];
 }

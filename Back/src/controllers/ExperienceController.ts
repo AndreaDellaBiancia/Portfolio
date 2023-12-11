@@ -7,27 +7,32 @@ import Experience from "../models/Experience";
 
 const userRepository = dataSource.getRepository(Experience);
 
+interface Experiences{
+  left : Experience[],
+  right : Experience[]
+}
+
 const getExperiences = async (
   req: Request,
   res: Response,
   next: NextFunction
-): Promise<object | any> => {
+): Promise<Experiences | any> => {
   try {
     const leftExperience = await userRepository.find({
       relations: {
-        images: true,
+        logosTechno: true,
     },
       where: { side: "left" },
     });
 
     const rightExperience = await userRepository.find({
       relations: {
-        images: true,
+        logosTechno: true,
     },
       where: { side: "right" },
     });
 
-    const experiences ={"left" : leftExperience, "right" : rightExperience}
+    const experiences : Experiences = {"left" : leftExperience, "right" : rightExperience}
 
     return res.status(200).json(experiences);
   } catch (error) {

@@ -2,7 +2,7 @@ import { DataSource } from "typeorm";
 import Experience from "../models/Experience";
 import EffectIn from "../models/EffectIn";
 import EffectOut from "../models/EffectOut";
-import LogoTechno from "../models/Image";
+import LogoTechno from "../models/LogoTechno";
 
 require("dotenv").config();
 
