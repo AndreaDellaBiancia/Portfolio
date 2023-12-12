@@ -55,10 +55,25 @@ export const InfoContainer = styled.div`
 `;
 
 export const ExperiencesContainer = styled.div`
-  width: 100%;
   display: flex;
-  justify-content: space-around;
-  height: 500rem;
+  flex-direction: column;
+  position: relative;
+  .experiences {
+    position: "relative";
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    height: 210rem;
+  }
+
+  .images-projects {
+    display: flex;
+    width: 56.5%;
+    flex-direction: row !important;
+    position: absolute !important;
+    bottom: -5rem;
+  }
 `;
 
 export const RightSide = styled.div`
@@ -73,4 +88,23 @@ export const LeftSide = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+`;
+
+export const Hangar = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  padding: 2rem;
+  height: 18rem;
+  marginleft: 2rem;
+  
+  
+
+  &:hover{
+    background: linear-gradient(45deg, #0daedc, #b81eb9);
+  cursor: pointer;
+  transition-delay: 2s;
+  }
 `;

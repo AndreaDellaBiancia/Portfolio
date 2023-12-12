@@ -21,15 +21,22 @@ const getExperiences = async (
     const leftExperience = await userRepository.find({
       relations: {
         logosTechno: true,
+        effectIn: true,
+        effectOut: true
     },
       where: { side: "left" },
+      order: { position: "asc" },
     });
 
     const rightExperience = await userRepository.find({
       relations: {
         logosTechno: true,
+        effectIn: true,
+        effectOut: true
     },
       where: { side: "right" },
+      order: { position: "asc" },
+
     });
 
     const experiences : Experiences = {"left" : leftExperience, "right" : rightExperience}
