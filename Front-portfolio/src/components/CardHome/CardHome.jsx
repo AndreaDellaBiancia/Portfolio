@@ -10,6 +10,7 @@ import {
   TechnoImg,
   ImageContent,
 } from "./Style";
+import ModalImage from "../ModalImage/ModalImage";
 
 function CardHome({
   scrollPosition,
@@ -27,6 +28,7 @@ function CardHome({
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [isImage, setIsImage] = useState(false);
   const [imageContent, setImageContent] = useState("");
+  const [modalImageShow, setModalImageShow] = useState(false);
 
   const handleResize = () => {
     setWindowWidth(window.innerWidth);
@@ -79,6 +81,7 @@ function CardHome({
           <img
             src={require(`../../assets/images/home/${imageContent}`)}
             alt={imageContent}
+            onClick={isImage ? () => setModalImageShow(true) : null}
           />
         </ImageContent>
       ) : (
@@ -95,6 +98,11 @@ function CardHome({
           </TechnoImgContainer>
         ))}
       </TechnosContainer>
+      <ModalImage
+        show={modalImageShow}
+        onHide={() => setModalImageShow(false)}
+        imageContent={imageContent}
+      />
     </CardContainer>
   );
 }
