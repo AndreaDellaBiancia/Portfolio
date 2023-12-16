@@ -2,11 +2,12 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import logo from './../../assets/images/home/logo.png'
+import "./style.css";
 function NavBar() {
   return (
     <Navbar collapseOnSelect expand="lg" >
       <Container>
-        <Navbar.Brand href="#home"><img src={logo} alt="Andrea" style={{width: 100}}/></Navbar.Brand>
+        <Navbar.Brand href="#home" ><img src={logo} alt="Andrea" /></Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
