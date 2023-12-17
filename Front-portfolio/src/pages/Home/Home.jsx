@@ -49,7 +49,7 @@ function Home() {
       let heigthExpContainer = 0;
       if (windowWidth > 1224) {
         heigthExpContainer =
-          (experieces.left.length + experieces.right.length) * 350;
+          (experieces.left.length + experieces.right.length) * 352;
       } else {
         heigthExpContainer =
           (experieces.left.length + experieces.right.length) * 450;
@@ -110,7 +110,7 @@ function Home() {
           <p></p>
         </div>
         <WhiteDiv>
-          <RoketImg src={fusee} alt="fusee" />
+          <RoketImg src={fusee} alt="fusee"/>
         </WhiteDiv>
       </InfoContainer>
       <ExperiencesContainer $size={`${experiencesContainerHeight}px`}>

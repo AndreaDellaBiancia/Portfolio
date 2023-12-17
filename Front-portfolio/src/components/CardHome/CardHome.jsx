@@ -79,6 +79,7 @@ function CardHome({
       {isImage ? (
         <ImageContent>
           <img
+            className="show-img-card"
             src={require(`../../assets/images/home/${imageContent}`)}
             alt={imageContent}
             onClick={isImage ? () => setModalImageShow(true) : null}

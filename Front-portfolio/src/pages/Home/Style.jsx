@@ -24,11 +24,11 @@ export const HomeContainer = styled.div`
   @media ${devices.laptop} {
     margin-top: 4rem;
     h1 {
-      font-size: 2.5rem;
+      font-size: 3.5rem;
     }
 
     h2 {
-      font-size: 1.8rem;
+      font-size: 2.3rem;
     }
   }
 `;

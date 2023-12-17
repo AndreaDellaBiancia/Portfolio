@@ -12,6 +12,7 @@ export const CardContainer = styled.div`
   height: auto;
   --animate-duration: 1s;
 
+
   @media ${devices.tablet} {
     padding: 0 15px;
     width: 80%;
@@ -24,6 +25,15 @@ export const CardContainer = styled.div`
     flex-direction: column;
     justify-content: flex-start;
     min-height: 500px;
+
+    .show-img-card {
+      transition: transform 1s;
+    }
+  
+    .show-img-card:hover {
+      cursor: pointer;
+      transform: scale(1.3);
+    }
   }
 
   @media ${devices.laptopL} {
@@ -117,7 +127,7 @@ export const Content = styled.p`
   }
 
   @media ${devices.laptop} {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
   }
 `;
 
