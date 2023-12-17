@@ -2,13 +2,13 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   Column,
-  ManyToOne,
   ManyToMany,
   JoinTable,
+  OneToOne,
+  JoinColumn,
 } from "typeorm";
-import EffectIn from "./EffectIn";
-import EffectOut from "./EffectOut";
 import LogoTechno from "./LogoTechno";
+import Project from "./Project";
 
 @Entity("Experience")
 export default class Experience {
@@ -20,9 +20,6 @@ export default class Experience {
 
   @Column({ type: "varchar" })
   imgTitle: string;
-
-  @Column({ type: "varchar" })
-  imgTitleSize: string;
 
   @Column({ type: "varchar" })
   subtitle: string;
@@ -42,13 +39,11 @@ export default class Experience {
   @Column({ type: "int" })
   position: number;
 
-  @ManyToOne(() => EffectIn, (effectIn) => effectIn.experiences)
-  effectIn: EffectIn;
-
-  @ManyToOne(() => EffectOut, (effectOut) => effectOut.experiences)
-  effectOut: EffectOut;
-
   @ManyToMany(() => LogoTechno)
   @JoinTable()
   logosTechno: LogoTechno[];
+
+  @OneToOne(() => Project)
+  @JoinColumn()
+  project: Project | null
 }

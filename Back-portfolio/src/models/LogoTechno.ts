@@ -7,7 +7,4 @@ export default class LogoTechno {
 
   @Column({ type: "varchar" })
   name: string;
-
-  @Column({ type: "varchar" })
-  size: string;
 }
