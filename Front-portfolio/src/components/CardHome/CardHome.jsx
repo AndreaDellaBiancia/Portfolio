@@ -1,4 +1,16 @@
-import { CardContainer, Content, Title, Subtitle } from "./Style";
+import { useEffect, useState } from "react";
+import {
+  CardContainer,
+  Content,
+  Title,
+  Subtitle,
+  TechnosContainer,
+  ImgTitleContainer,
+  TechnoImgContainer,
+  TechnoImg,
+  ImageContent,
+} from "./Style";
+import ModalImage from "../ModalImage/ModalImage";
 
 function CardHome({
   scrollPosition,
@@ -13,35 +25,85 @@ function CardHome({
   content,
   logosTechno,
 }) {
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [isImage, setIsImage] = useState(false);
+  const [imageContent, setImageContent] = useState("");
+  const [modalImageShow, setModalImageShow] = useState(false);
+
+  const handleResize = () => {
+    setWindowWidth(window.innerWidth);
+  };
+
+  useEffect(() => {
+    // Ajoute un écouteur d'événements pour détecter les changements de taille d'écran
+    window.addEventListener("resize", handleResize);
+    if (content.startsWith("image")) {
+      const imageString = content.split(" ");
+      const nomDuFichier = imageString[imageString.length - 1];
+      setImageContent(nomDuFichier);
+      setIsImage(true);
+    } else {
+      setIsImage(false);
+    }
+    // Nettoyage de l'écouteur d'événements lors du démontage du composant
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []); // Le tableau vide signifie que cet effet n'a besoin de s'exécuter qu'une fois après le montage initial
+
+
+
   return (
     <CardContainer
       className={
-        scrollPosition >= scrollPositionEffect ? effectIn.name : effectOut.name
+        windowWidth > 1224
+          ? scrollPosition >= scrollPositionEffect
+            ? effectIn.name
+            : effectOut.name
+          : ""
       }
       $marginCard={margin}
       $scrollPosition={scrollPosition}
       $scrollPositionEffect={scrollPositionEffect}
     >
       <Title>
-        <img
-          style={{ width: imgTitleSize }}
-          src={require(`../../assets/images/technos/${imgTitle}`)}
-          alt="js"
-        />{" "}
+        <ImgTitleContainer>
+          <img
+            src={require(`../../assets/images/technos/${imgTitle}`)}
+            alt="js"
+          />
+        </ImgTitleContainer>
         {title}
       </Title>
       <Subtitle>{subtitle}</Subtitle>
-      <Content>{content}</Content>
-      {logosTechno?.map((logo) => (
-        <div style={{width:"3.5rem", marginRight: "1.5rem", marginBottom: "1rem"}}>
+      {isImage ? (
+        <ImageContent>
           <img
-            key={logo.id}
-            style={{ width: "100%"}}
-            src={require(`../../assets/images/technos/${logo.name}`)}
-            alt=""
+            className="show-img-card"
+            src={require(`../../assets/images/home/${imageContent}`)}
+            alt={imageContent}
+            onClick={isImage ? () => setModalImageShow(true) : null}
           />
-        </div>
-      ))}
+        </ImageContent>
+      ) : (
+        <Content>{content}</Content>
+      )}
+
+      <TechnosContainer>
+        {logosTechno?.map((logo) => (
+          <TechnoImgContainer key={logo.id}>
+            <TechnoImg
+              src={require(`../../assets/images/technos/${logo.name}`)}
+              alt={logo.name}
+            />
+          </TechnoImgContainer>
+        ))}
+      </TechnosContainer>
+      <ModalImage
+        show={modalImageShow}
+        onHide={() => setModalImageShow(false)}
+        imageContent={imageContent}
+      />
     </CardContainer>
   );
 }

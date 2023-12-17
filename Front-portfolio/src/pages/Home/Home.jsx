@@ -6,11 +6,18 @@ import hangar from "./../../assets/images/home/hangar.png";
 
 import {
   ExperiencesContainer,
+  FooterContainer,
+  FooterHome,
+  Grass,
   Hangar,
   HomeContainer,
+  ImgHomeContainer,
   InfoContainer,
   LeftSide,
   RightSide,
+  RoketImg,
+  Smoke,
+  WhiteDiv,
 } from "./Style.jsx";
 import CardHome from "../../components/CardHome/CardHome.jsx";
 import { getExperiences } from "../../fetch/getExperiences.jsx";
@@ -19,14 +26,47 @@ function Home() {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [leftExperiences, setLeftExperiences] = useState([]);
   const [rightExperiences, setRightExperiences] = useState([]);
+  const [allExperiences, setAllExperiences] = useState([]);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [experiencesContainerHeight, setExperiencesContainerHeight] =
+    useState();
 
   console.log(scrollPosition);
+
+  const height = window.innerHeight;
+  const scrollHeight = document.body.scrollHeight;
+
+  console.log("====================================");
+  console.log(scrollHeight);
+  console.log("====================================");
 
   useEffect(() => {
     async function getDatas() {
       const experieces = await getExperiences();
       setLeftExperiences(experieces.left);
       setRightExperiences(experieces.right);
+
+      let heigthExpContainer = 0;
+      if (windowWidth > 1224) {
+        heigthExpContainer =
+          (experieces.left.length + experieces.right.length) * 352;
+      } else {
+        heigthExpContainer =
+          (experieces.left.length + experieces.right.length) * 450;
+      }
+
+      setExperiencesContainerHeight(heigthExpContainer);
+      let experiencesList = [];
+      experieces.left.forEach((exp) => {
+        experiencesList.push(exp);
+      });
+      experieces.right.forEach((exp) => {
+        experiencesList.push(exp);
+      });
+
+      const newList = experiencesList.sort((a, b) => b.position - a.position);
+
+      setAllExperiences(newList);
     }
 
     getDatas();
@@ -45,8 +85,7 @@ function Home() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-  const bottomOfScreen = window.innerHeight + window.scrollY;
-  console.log("Position du bas de l'écran :", bottomOfScreen);
+
   return (
     <HomeContainer>
       <h1 className="animate__animated animate__fadeInDown">
@@ -55,7 +94,9 @@ function Home() {
       <h2 className="animate__animated animate__zoomIn">
         Développeur web fullstack
       </h2>
-      <img src={homeImg} alt="" style={{ width: "50%" }} />
+      <ImgHomeContainer>
+        <img src={homeImg} alt="Informaticien" />
+      </ImgHomeContainer>
       <InfoContainer>
         <div className="infos">
           <h3>Bonjour, je m'appelle Andrea</h3>
@@ -66,89 +107,69 @@ function Home() {
             d'acquérir de nombreuses compétences, tout en rencontrant des
             personnes bienveillantes dont je garde d'excellents souvenirs.
           </p>
+          <p></p>
         </div>
-        <div
-          style={{
-            width: "50%",
-            height: "10rem",
-            backgroundColor: "white",
-            position: "absolute",
-            bottom: "-5rem",
-            display: "flex",
-            justifyContent: "center",
-            borderRadius: "10px 10px 0 0 ",
-          }}
-        >
-          <img
-            src={fusee}
-            alt="fusee"
-            style={{
-              position: "relative",
-              width: "4rem",
-              height: "8rem",
-              marginTop: "3rem",
-            }}
-          />
-        </div>
+        <WhiteDiv>
+          <RoketImg src={fusee} alt="fusee"/>
+        </WhiteDiv>
       </InfoContainer>
-      <ExperiencesContainer>
-        <div className="experiences">
-          <LeftSide>
-            {leftExperiences.map((exp, index) => (
-              <CardHome key={index} scrollPosition={scrollPosition} {...exp} />
-            ))}
-          </LeftSide>
-          <div
-            className="line"
-            style={{
-              height: `${scrollPosition - 9}%`,
-              marginBottom: "5rem",
-              position: "relative",
-              transition: "height 0.5s ease-in-out",
-            }}
-          >
-            {" "}
+      <ExperiencesContainer $size={`${experiencesContainerHeight}px`}>
+        {windowWidth > 1224 ? (
+          <div className="experiences">
+            <div
+              className="line"
+              style={{ height: ` ${scrollPosition - 5}%` }}
+            ></div>
+            <LeftSide>
+              {leftExperiences.map((exp, index) => (
+                <CardHome
+                  key={index}
+                  scrollPosition={scrollPosition}
+                  {...exp}
+                />
+              ))}
+            </LeftSide>
+
+            <RightSide>
+              {rightExperiences.map((exp, index) => (
+                <CardHome
+                  key={index}
+                  scrollPosition={scrollPosition}
+                  {...exp}
+                />
+              ))}
+            </RightSide>
           </div>
-          <RightSide>
-            {rightExperiences.map((exp, index) => (
-              <CardHome key={index} scrollPosition={scrollPosition} {...exp} />
+        ) : (
+          <div className="experiences">
+            <div
+              className="line"
+              style={{ height: `${scrollPosition -2}%` }}
+            ></div>
+            {allExperiences.map((exp, index) => (
+              <>
+                <CardHome
+                  key={index}
+                  scrollPosition={scrollPosition}
+                  {...exp}
+                />
+                <hr style={{ width: "80%", margin: "0 auto" }}></hr>
+              </>
             ))}
-          </RightSide>
-        </div>
-        <div
-          className="images-projects"
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-between",
-            alignItems: "center",
-            position: "relative",
-          }}
-        >
-           <Hangar>
-           <h3 style={{position: "relative", top: "2.5rem", fontWeight: "bold", fontSize:"2.5rem"}}>PROJETS</h3>
-            <img
-              src={hangar}
-              alt="hangar"
-              style={{
-                width: "15rem",
-                position: "relative", bottom: "2rem"
-              }}
-            />
-          </Hangar>
-          <div>
-            
-            <img
-              src={fumee}
-              alt="fumee"
-              style={{
-                width: "15rem",
-                height: "20rem",
-              }}
-            />
           </div>
-        </div>
-        <div style={{width: "100%", height: "11rem", backgroundColor: "#4da038", position: "absolute", bottom: "-5rem", zIndex: -1}}></div>
+        )}
+        <FooterHome className={scrollPosition >= 98 ? "animate__animated animate__fadeIn" : "animate__animated animate__zoomOut"}>
+          <FooterContainer>
+            <Hangar>
+              <h3>PROJETS</h3>
+              <img src={hangar} alt="hangar" />
+            </Hangar>
+            <Smoke>
+              <img src={fumee} alt="fumee" />
+            </Smoke>
+          </FooterContainer>
+          <Grass></Grass>
+        </FooterHome>
       </ExperiencesContainer>
     </HomeContainer>
   );

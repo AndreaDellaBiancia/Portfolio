@@ -25,7 +25,7 @@ const getExperiences = async (
         effectOut: true
     },
       where: { side: "left" },
-      order: { position: "asc" },
+      order: { position: "desc" },
     });
 
     const rightExperience = await userRepository.find({
@@ -35,7 +35,7 @@ const getExperiences = async (
         effectOut: true
     },
       where: { side: "right" },
-      order: { position: "asc" },
+      order: { position: "desc" },
 
     });
 

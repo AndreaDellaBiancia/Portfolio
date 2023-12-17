@@ -1,19 +1,22 @@
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import logo from './../../assets/images/home/logo.png'
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import logo from "./../../assets/images/home/logo.png";
+import "./style.css";
 function NavBar() {
   return (
-    <Navbar collapseOnSelect expand="lg" >
-      <Container>
-        <Navbar.Brand href="#home"><img src={logo} alt="Andrea" style={{width: 100}}/></Navbar.Brand>
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
+    <Navbar expand="lg">
+      <Container className="m-0"> 
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-          </Nav>
-          <Nav style={{fontSize: "2rem"}}>
-            <Nav.Link href="#deets" style={{marginRight: "2rem"}}>Projets</Nav.Link>
-            <Nav.Link eventKey={2} href="#memes">
+            <Nav.Link href="#deets" className="nav-item">
+              Accueil
+            </Nav.Link>
+            <Nav.Link href="#deets" className="nav-item">
+              Projets
+            </Nav.Link>
+            <Nav.Link eventKey={2} href="#memes" className="nav-item">
               Contacts
             </Nav.Link>
           </Nav>
@@ -22,5 +25,5 @@ function NavBar() {
     </Navbar>
   );
 }
-  
+
 export default NavBar;
