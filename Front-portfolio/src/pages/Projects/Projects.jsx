@@ -1,47 +1,42 @@
+import { useEffect, useState } from "react";
 import CardProject from "../../components/CardProject/CardProject";
 import Carroussel from "../../components/Carroussel/Carrousel";
+import { getProjects } from "../../fetch/getProjects";
+import pc from "./../../assets/images/projects/pc.jpg";
+import { ImagePc, Title } from "./Style";
 
 function Projects() {
-  let cards = [
-    {
-      key: 1,
-      content: <CardProject />,
-    },
-    {
-      key: 2,
-      content: <CardProject />,
-    },
-    {
-      key: 3,
-      content: <CardProject />,
-    },
-    {
-      key: 4,
-      content: <CardProject />,
-    },
-    {
-      key: 5,
-      content: <CardProject />,
-    },
-    {
-      key: 6,
-      content: <CardProject />,
-    },
-    {
-      key: 7,
-      content: <CardProject />,
-    },
-  ];
+  const [projects, setProjects] = useState([]);
+  const [cards, setCards] = useState([]);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    async function getData() {
+      const projectsData = await getProjects();
+      setProjects(projectsData);
+    }
+
+    getData();
+  }, []);
+
+  useEffect(() => {
+    const cardData = projects.map((project) => ({
+      key: project.id,
+      content: <CardProject {...project} />,
+    }));
+    setCards(cardData);
+  }, [projects]);
+
   return (
-    <div style={{marginTop: "10rem"}}>
-      <Carroussel
-        cards={cards}
-        height="500px"
-        width="90%"
-        margin="0 auto"
-        offset={2}
-        showArrows={false}
-      />
+    <div>
+      <Title>PROJETS</Title>
+      <ImagePc src={pc} alt="pc" />
+      {windowWidth < 750
+        ? cards.length && cards.map((card) => card.content)
+        : cards.length && (
+            <Carroussel cards={cards} offset={2} showArrows={false} />
+          )}
+     
     </div>
   );
 }

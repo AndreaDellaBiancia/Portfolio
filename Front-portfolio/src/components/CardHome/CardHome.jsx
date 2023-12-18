@@ -37,6 +37,7 @@ function CardHome({
     if (content.startsWith("image")) {
       const imageString = content.split(" ");
       const nomDuFichier = imageString[imageString.length - 1];
+
       setImageContent(nomDuFichier);
       setIsImage(true);
     } else {
@@ -64,7 +65,7 @@ function CardHome({
       <Title>
         <ImgTitleContainer>
           <img
-            src={require(`../../assets/images/technos/${imgTitle}`)}
+            src={require(`../../assets/images/projects/${imgTitle}`)}
             alt="js"
           />
         </ImgTitleContainer>
@@ -75,7 +76,7 @@ function CardHome({
         <ImageContent>
           <img
             className="show-img-card"
-            src={require(`../../assets/images/home/${imageContent}`)}
+            src={require(`../../assets/images/projects/${imageContent}`)}
             alt={imageContent}
             onClick={isImage ? () => setModalImageShow(true) : null}
           />

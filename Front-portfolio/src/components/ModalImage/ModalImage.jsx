@@ -14,7 +14,7 @@ function ModalImage(props) {
         <div className="modal-img-container">
           <img
           className="modal-img"
-            src={require(`../../assets/images/home/${props?.imageContent}`)}
+            src={require(`../../assets/images/projects/${props?.imageContent}`)}
             alt={props.imageContent}
           />
         </div>

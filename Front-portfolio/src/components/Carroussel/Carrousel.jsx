@@ -1,6 +1,7 @@
 import Carousel from "react-spring-3d-carousel";
 import { useState, useEffect } from "react";
 import { config } from "react-spring";
+import { CarrousselContainer } from "./Style";
 
 function Carroussel(props) {
   const table = props.cards.map((element, index) => {
@@ -18,9 +19,7 @@ function Carroussel(props) {
   }, [props.offset, props.showArrows]);
 
   return (
-    <div
-      style={{ width: props.width, height: props.height, margin: props.margin }}
-    >
+    <CarrousselContainer className="animate__animated animate__fadeInUp">
       <Carousel
         slides={cards}
         goToSlide={goToSlide}
@@ -28,8 +27,8 @@ function Carroussel(props) {
         showNavigation={showArrows}
         animationConfig={config.gentle}
       />
-    </div>
+    </CarrousselContainer>
   );
 }
-  
+
 export default Carroussel;
