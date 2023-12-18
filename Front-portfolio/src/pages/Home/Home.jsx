@@ -3,6 +3,7 @@ import homeImg from "./../../assets/images/home/homeImg.jpg";
 import fusee from "./../../assets/images/home/fusee.png";
 import fumee from "./../../assets/images/home/fumee.png";
 import hangar from "./../../assets/images/home/hangar.png";
+import { Link } from "react-router-dom";
 
 import {
   ExperiencesContainer,
@@ -31,14 +32,6 @@ function Home() {
   const [experiencesContainerHeight, setExperiencesContainerHeight] =
     useState();
 
-  console.log(scrollPosition);
-
-  const height = window.innerHeight;
-  const scrollHeight = document.body.scrollHeight;
-
-  console.log("====================================");
-  console.log(scrollHeight);
-  console.log("====================================");
 
   useEffect(() => {
     async function getDatas() {
@@ -160,10 +153,12 @@ function Home() {
         )}
         <FooterHome className={scrollPosition >= 98 ? "animate__animated animate__fadeIn" : "animate__animated animate__zoomOut"}>
           <FooterContainer>
-            <Hangar>
-              <h3>PROJETS</h3>
-              <img src={hangar} alt="hangar" />
-            </Hangar>
+            <Link to="/projets" style={{textDecoration: "none", color: "black"}}>
+              <Hangar>
+                <h3>PROJETS</h3>
+                <img src={hangar} alt="hangar" />
+              </Hangar>
+            </Link>
             <Smoke>
               <img src={fumee} alt="fumee" />
             </Smoke>

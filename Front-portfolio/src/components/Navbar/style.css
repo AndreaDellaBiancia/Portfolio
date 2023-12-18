@@ -2,6 +2,8 @@
   font-size: 2rem;
   margin: 1rem 1.5rem;
   padding: 0.5rem 2rem;
+  text-decoration: none;
+  color: black;
 }
 
 .nav-item:nth-child(1):hover{

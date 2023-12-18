@@ -16,9 +16,6 @@ function CardHome({
   scrollPosition,
   scrollPositionEffect,
   imgTitle,
-  imgTitleSize,
-  effectIn,
-  effectOut,
   margin,
   title,
   subtitle,
@@ -40,6 +37,7 @@ function CardHome({
     if (content.startsWith("image")) {
       const imageString = content.split(" ");
       const nomDuFichier = imageString[imageString.length - 1];
+
       setImageContent(nomDuFichier);
       setIsImage(true);
     } else {
@@ -51,15 +49,13 @@ function CardHome({
     };
   }, []); // Le tableau vide signifie que cet effet n'a besoin de s'exécuter qu'une fois après le montage initial
 
-
-
   return (
     <CardContainer
       className={
         windowWidth > 1224
           ? scrollPosition >= scrollPositionEffect
-            ? effectIn.name
-            : effectOut.name
+            ? "animate__animated animate__fadeIn"
+            : "animate__animated animate__fadeOutDown"
           : ""
       }
       $marginCard={margin}
@@ -69,7 +65,7 @@ function CardHome({
       <Title>
         <ImgTitleContainer>
           <img
-            src={require(`../../assets/images/technos/${imgTitle}`)}
+            src={require(`../../assets/images/projects/${imgTitle}`)}
             alt="js"
           />
         </ImgTitleContainer>
@@ -80,7 +76,7 @@ function CardHome({
         <ImageContent>
           <img
             className="show-img-card"
-            src={require(`../../assets/images/home/${imageContent}`)}
+            src={require(`../../assets/images/projects/${imageContent}`)}
             alt={imageContent}
             onClick={isImage ? () => setModalImageShow(true) : null}
           />

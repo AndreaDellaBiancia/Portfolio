@@ -1,24 +1,35 @@
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import logo from "./../../assets/images/home/logo.png";
 import "./style.css";
+import { Link } from "react-router-dom";
+import { useState } from "react";
+
 function NavBar() {
+  const [expanded, setExpanded] = useState(false);
+
+  const closeMenu = () => {
+    setExpanded(false);
+  };
+
   return (
-    <Navbar expand="lg">
-      <Container className="m-0"> 
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+    <Navbar expand="lg" expanded={expanded}>
+      <Container className="m-0">
+        <Navbar.Toggle
+          aria-controls="basic-navbar-nav"
+          onClick={() => setExpanded(!expanded)}
+        />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#deets" className="nav-item">
+            <Link to="/" className="nav-item" onClick={closeMenu}>
               Accueil
-            </Nav.Link>
-            <Nav.Link href="#deets" className="nav-item">
+            </Link>
+            <Link to="projets" className="nav-item" onClick={closeMenu}>
               Projets
-            </Nav.Link>
-            <Nav.Link eventKey={2} href="#memes" className="nav-item">
+            </Link>
+            <Link to="contacts" className="nav-item" onClick={closeMenu}>
               Contacts
-            </Nav.Link>
+            </Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
