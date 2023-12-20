@@ -10,6 +10,6 @@ export default class ProjectFunctionality {
   name: string;
 
 
-  @ManyToOne(() => Project, (project) => project.projectTargets)
+  @ManyToOne(() => Project, (project) => project.projectFunctionalities)
   project: Project
 }

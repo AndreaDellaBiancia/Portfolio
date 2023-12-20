@@ -9,6 +9,7 @@ import {
 import ProjectPicture from "./ProjectPicture";
 import ProjectTarget from "./ProjectTarget";
 import LogoTechno from "./LogoTechno";
+import ProjectFunctionality from "./ProjectFunctionality";
 
 @Entity("Project")
 export default class Project {
@@ -33,6 +34,9 @@ export default class Project {
 
   @OneToMany(() => ProjectPicture, (projectPicture) => projectPicture.project, { nullable: true } )
   projectPictures: ProjectPicture[]
+
+  @OneToMany(() => ProjectFunctionality, (projectFunctionality) => projectFunctionality.project, { nullable: true } )
+  projectFunctionalities: ProjectFunctionality[]
 
   @OneToMany(() => ProjectTarget, (projectTarget) => projectTarget.project, { nullable: true })
   projectTargets: ProjectTarget[]

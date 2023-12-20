@@ -8,6 +8,8 @@ const router = express.Router();
 
 router.get("/", ExperienceController.getExperiences);
 router.get("/projects", ProjectController.getProjects);
+router.get("/projects/:projectTitle", ProjectController.getProjectByTitle);
+
 
 
 module.exports = router;

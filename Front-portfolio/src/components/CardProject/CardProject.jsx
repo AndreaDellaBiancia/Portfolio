@@ -1,12 +1,17 @@
+import { Link } from "react-router-dom";
 import {
   ButtonContainer,
   CardContainer,
   CardImg,
+  DetailsBtn,
   ImgContainer,
+  SiteBtn,
   Title,
 } from "./Style";
 
-function CardProject({ title, picture }) {
+function CardProject({ title, picture, siteLink }) {
+  const slug = title.replaceAll(" ", "_");
+
   return (
     <CardContainer>
       <ImgContainer>
@@ -18,12 +23,14 @@ function CardProject({ title, picture }) {
 
       <Title>{title}</Title>
       <ButtonContainer>
-        <button class="button-29" role="button">
-          DETAILS
-        </button>
-        <button class="button-29" role="button">
-          SITE
-        </button>
+        <Link to={`/projets/${slug}`}>
+          <DetailsBtn>Détails</DetailsBtn>
+        </Link>
+        {siteLink && (
+          <a href={siteLink} target="_blank" rel="noreferrer">
+            <SiteBtn>Site</SiteBtn>
+          </a>
+        )}
       </ButtonContainer>
     </CardContainer>
   );

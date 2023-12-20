@@ -32,6 +32,12 @@ function Home() {
   const [experiencesContainerHeight, setExperiencesContainerHeight] =
     useState();
 
+  function getSlug(title) {
+    //Création slug
+    const cutSlug = title.split("(")[0].trim();
+    const newslug = cutSlug.replaceAll(" ", "_");
+    return newslug;
+  }
 
   useEffect(() => {
     async function getDatas() {
@@ -45,7 +51,7 @@ function Home() {
           (experieces.left.length + experieces.right.length) * 352;
       } else {
         heigthExpContainer =
-          (experieces.left.length + experieces.right.length) * 450;
+          (experieces.left.length + experieces.right.length) * 453;
       }
 
       setExperiencesContainerHeight(heigthExpContainer);
@@ -103,7 +109,7 @@ function Home() {
           <p></p>
         </div>
         <WhiteDiv>
-          <RoketImg src={fusee} alt="fusee"/>
+          <RoketImg src={fusee} alt="fusee" />
         </WhiteDiv>
       </InfoContainer>
       <ExperiencesContainer $size={`${experiencesContainerHeight}px`}>
@@ -114,46 +120,124 @@ function Home() {
               style={{ height: ` ${scrollPosition - 5}%` }}
             ></div>
             <LeftSide>
-              {leftExperiences.map((exp, index) => (
-                <CardHome
-                  key={index}
-                  scrollPosition={scrollPosition}
-                  {...exp}
-                />
-              ))}
+              {leftExperiences.map((exp, index) => {
+                if (exp.project?.id != null) {
+                  return (
+                    <Link
+                      to={`/projets/${getSlug(exp.title)}`}
+                      style={{
+                        color: "black",
+                        textDecoration: "none",
+                        display: "flex",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <CardHome
+                        key={index}
+                        scrollPosition={scrollPosition}
+                        {...exp}
+                      />
+                    </Link>
+                  );
+                } else {
+                  return (
+                    <CardHome
+                      key={index}
+                      scrollPosition={scrollPosition}
+                      {...exp}
+                    />
+                  );
+                }
+              })}
             </LeftSide>
 
             <RightSide>
-              {rightExperiences.map((exp, index) => (
-                <CardHome
-                  key={index}
-                  scrollPosition={scrollPosition}
-                  {...exp}
-                />
-              ))}
+              {rightExperiences.map((exp, index) => {
+                if (exp.project?.id != null) {
+                  return (
+                    <Link
+                      to={`/projets/${getSlug(exp.title)}`}
+                      style={{
+                        color: "black",
+                        textDecoration: "none",
+                        display: "flex",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <CardHome
+                        key={index}
+                        scrollPosition={scrollPosition}
+                        {...exp}
+                      />
+                    </Link>
+                  );
+                } else {
+                  return (
+                    <CardHome
+                      key={index}
+                      scrollPosition={scrollPosition}
+                      {...exp}
+                    />
+                  );
+                }
+              })}
             </RightSide>
           </div>
         ) : (
           <div className="experiences">
             <div
               className="line"
-              style={{ height: `${scrollPosition -2}%` }}
+              style={{ height: `${scrollPosition - 2}%` }}
             ></div>
-            {allExperiences.map((exp, index) => (
-              <>
-                <CardHome
-                  key={index}
-                  scrollPosition={scrollPosition}
-                  {...exp}
-                />
-                <hr style={{ width: "80%", margin: "0 auto" }}></hr>
-              </>
-            ))}
+            {allExperiences.map((exp, index) => {
+              if (exp.project?.id != null) {
+                return (
+                  <>
+                    <Link
+                      to={`/projets/${getSlug(exp.title)}`}
+                      style={{
+                        color: "black",
+                        textDecoration: "none",
+                        display: "flex",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <CardHome
+                        key={index}
+                        scrollPosition={scrollPosition}
+                        {...exp}
+                      />
+                    </Link>
+                    <hr style={{ width: "80%", margin: "0 auto" }}></hr>
+                  </>
+                );
+              } else {
+                return (
+                  <>
+                    <CardHome
+                      key={index}
+                      scrollPosition={scrollPosition}
+                      {...exp}
+                    />
+                    <hr style={{ width: "80%", margin: "0 auto" }}></hr>
+                  </>
+                );
+              }
+            })}
           </div>
         )}
-        <FooterHome className={scrollPosition >= 98 ? "animate__animated animate__fadeIn" : "animate__animated animate__zoomOut"}>
+        <FooterHome
+          className={
+            scrollPosition >= 98
+              ? "animate__animated animate__fadeIn"
+              : "animate__animated animate__zoomOut"
+          }
+        >
           <FooterContainer>
-            <Link to="/projets" style={{textDecoration: "none", color: "black"}}>
+            <Link
+              to="/projets"
+              style={{ textDecoration: "none", color: "black" }}
+            >
               <Hangar>
                 <h3>PROJETS</h3>
                 <img src={hangar} alt="hangar" />
