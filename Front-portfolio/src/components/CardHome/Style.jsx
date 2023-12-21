@@ -141,9 +141,10 @@ export const ImageContent = styled.div`
 
 export const TechnosContainer = styled.div`
 display:flex;
-flex direction: row;
+flex-direction: row;
 flex-wrap: wrap;
 justify-content: center;
+align-items: center;
 
 `;
 
@@ -151,15 +152,20 @@ export const TechnoImgContainer = styled.div`
   width: 1.9rem;
   margin-right: 1rem;
   margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   @media ${devices.tablet} {
-    width: 2rem;
+    width: 2.5rem;
     margin-right: 1.5rem;
     margin-bottom: 0.6rem;
   }
 
   @media ${devices.laptop} {
     width: 3rem;
+    height: 3rem;
+
     margin-right: 1.5rem;
     margin-bottom: 1rem;
   }

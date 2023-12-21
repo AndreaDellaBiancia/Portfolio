@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import CardProject from "../../components/CardProject/CardProject";
-import Carroussel from "../../components/Carroussel/Carrousel";
 import { getProjects } from "../../fetch/getProjects";
 import pc from "./../../assets/images/projects/pc.jpg";
 import { ImagePc, Title } from "./Style";
+import CarrousselProjects from "../../components/CarrousselProjects/CarrouselProjects";
 
 function Projects() {
   const [projects, setProjects] = useState([]);
@@ -34,7 +34,7 @@ function Projects() {
       {windowWidth < 750
         ? cards.length && cards.map((card) => card.content)
         : cards.length && (
-            <Carroussel cards={cards} offset={2} showArrows={false} />
+            <CarrousselProjects cards={cards} offset={2} showArrows={false} />
           )}
      
     </div>

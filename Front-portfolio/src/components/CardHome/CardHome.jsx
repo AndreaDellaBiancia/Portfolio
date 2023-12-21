@@ -26,6 +26,7 @@ function CardHome({
   const [isImage, setIsImage] = useState(false);
   const [imageContent, setImageContent] = useState("");
   const [modalImageShow, setModalImageShow] = useState(false);
+  const [slug, setSlug] = useState('');
 
   const handleResize = () => {
     setWindowWidth(window.innerWidth);
@@ -43,11 +44,13 @@ function CardHome({
     } else {
       setIsImage(false);
     }
+    
     // Nettoyage de l'écouteur d'événements lors du démontage du composant
     return () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []); // Le tableau vide signifie que cet effet n'a besoin de s'exécuter qu'une fois après le montage initial
+
 
   return (
     <CardContainer
@@ -62,6 +65,7 @@ function CardHome({
       $scrollPosition={scrollPosition}
       $scrollPositionEffect={scrollPositionEffect}
     >
+      
       <Title>
         <ImgTitleContainer>
           <img
