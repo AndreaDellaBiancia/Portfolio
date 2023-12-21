@@ -12,10 +12,14 @@ import {
   GithubBtn,
   Header,
   ImgTitle,
+  InfoThemeContainer,
   InfosContainer,
   InfosItem,
+  InfosItemTechno,
   InfosList,
+  InfosListTechnos,
   InfosTitle,
+  ProjectDescription,
   SiteBtn,
   TechnoImg,
   Title,
@@ -27,6 +31,7 @@ function ProjectDetails() {
   const { projectTitle } = useParams();
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     const title = projectTitle.replace("_", " ");
     async function getData(title) {
       const projectData = await getProjectByTitle(title);
@@ -38,21 +43,31 @@ function ProjectDetails() {
   useEffect(() => {
     let text = document.getElementById("text");
     let splitText = text.textContent.split("");
-
-    text.innerHTML = "";
-    let i = 0;
-    setInterval(function () {
-      AjoutDeLettre(splitText, text);
-    }, 30);
-
     function AjoutDeLettre(splitText, text) {
-      if (i < splitText.length) {
+      for (let i = 0; i < splitText.length; i++) {
         text.innerHTML += splitText[i];
         if (splitText[i] === "\n") {
           text.innerHTML += "<br>";
         }
-        i++;
       }
+    }
+    text.innerHTML = "";
+    let i = 0;
+    if (window.innerWidth > 1224) {
+      setInterval(function () {
+        AjoutDeLettre(splitText, text);
+      }, 30);
+      function AjoutDeLettre(splitText, text) {
+        if (i < splitText.length) {
+          text.innerHTML += splitText[i];
+          if (splitText[i] === "\n") {
+            text.innerHTML += "<br>";
+          }
+          i++;
+        }
+      }
+    } else {
+      AjoutDeLettre(splitText, text);
     }
   }, [project.description]);
 
@@ -87,9 +102,7 @@ function ProjectDetails() {
         </ButtonsContainer>
       </Header>
       <CarouselDescriptionContainer>
-        <p id="text" style={{ fontSize: "1.2rem", width: "30%" }}>
-          {project.description}
-        </p>
+        <ProjectDescription id="text">{project.description}</ProjectDescription>
         <Carousel data-bs-theme="dark" id="carousel">
           {project.projectPictures?.map((slide) => (
             <Carousel.Item interval={3000}>
@@ -105,40 +118,40 @@ function ProjectDetails() {
       </CarouselDescriptionContainer>
       <InfosContainer>
         {project.logosTechno && (
-          <div>
+          <InfoThemeContainer>
             <InfosTitle>Technologies</InfosTitle>
-            <InfosList>
+            <InfosListTechnos id="list">
               {project.logosTechno.map((techno) => (
-                <InfosItem>
+                <InfosItemTechno>
                   <TechnoImg
                     src={require(`../../assets/images/technos/${techno.name}`)}
                     alt=""
                   />
                   {getTechnoName(techno.name)}
-                </InfosItem>
+                </InfosItemTechno>
               ))}
-            </InfosList>
-          </div>
+            </InfosListTechnos>
+          </InfoThemeContainer>
         )}
         {project.projectTargets && (
-          <div>
+          <InfoThemeContainer>
             <InfosTitle>Objectifs</InfosTitle>
             <InfosList>
               {project?.projectTargets.map((target) => (
                 <InfosItem>{target.name}</InfosItem>
               ))}
             </InfosList>
-          </div>
+          </InfoThemeContainer>
         )}
         {project.projectFunctionalities && (
-          <div>
+          <InfoThemeContainer>
             <InfosTitle>Fonctionnalités</InfosTitle>
             <InfosList>
               {project.projectFunctionalities.map((functionality) => (
                 <InfosItem>{functionality.name}</InfosItem>
               ))}
             </InfosList>
-          </div>
+          </InfoThemeContainer>
         )}
       </InfosContainer>
     </Container>
