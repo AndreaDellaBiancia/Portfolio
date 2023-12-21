@@ -19,6 +19,7 @@ import {
   RoketImg,
   Smoke,
   WhiteDiv,
+  WhiteDiv2,
 } from "./Style.jsx";
 import CardHome from "../../components/CardHome/CardHome.jsx";
 import { getExperiences } from "../../fetch/getExperiences.jsx";
@@ -111,6 +112,7 @@ function Home() {
         <WhiteDiv>
           <RoketImg src={fusee} alt="fusee" />
         </WhiteDiv>
+        <WhiteDiv2></WhiteDiv2>
       </InfoContainer>
       <ExperiencesContainer $size={`${experiencesContainerHeight}px`}>
         {windowWidth > 1224 ? (

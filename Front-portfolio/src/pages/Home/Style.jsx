@@ -64,6 +64,9 @@ export const InfoContainer = styled.div`
   align-items: center;
   flex-direction: column;
   padding: 0 0.3rem;
+  box-shadow: 0px 15px 15px -10px #000; /* Les valeurs spécifient les décalages, l'étalement, le flou et la couleur de l'ombre */
+
+  transform: translateY(-5px);
 
   .infos {
     width: 100%;
@@ -135,6 +138,7 @@ export const WhiteDiv = styled.div`
   display: flex;
   justify-content: center;
   border-radius: 10px 0 0 0;
+  box-shadow: inset 0px 15px 15px -10px #000; /* Les valeurs spécifient les décalages, l'étalement, le flou et la couleur de l'ombre */
 
   @media ${devices.tablet} {
     width: 5rem;
@@ -143,14 +147,40 @@ export const WhiteDiv = styled.div`
 
   @media ${devices.laptop} {
     width: 50%;
-    height: 10rem;
-    bottom: -5rem;
+    height: 5rem;
+    bottom: 0rem;
     left: 50%;
     transform: translateX(-50%);
     border-radius: 10px 10px 0 0;
   }
 `;
 
+export const WhiteDiv2 = styled.div`
+  width: 2.5rem;
+  height: 3rem;
+  background-color: white;
+  position: absolute;
+  bottom: -2rem;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  border-radius: 10px 0 0 0;
+  z-index: -1;
+
+  @media ${devices.tablet} {
+    width: 5rem;
+    height: 4rem;
+  }
+
+  @media ${devices.laptop} {
+    width: 50%;
+    height: 5rem;
+
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 10px 10px 0 0;
+  }
+`;
 export const RoketImg = styled.img`
   position: absolute;
   right: 0.1rem;
