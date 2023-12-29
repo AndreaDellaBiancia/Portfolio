@@ -141,7 +141,11 @@ export const CarouselDescriptionContainer = styled.div`
     margin-top: 2rem;
     flex-direction: row;
     #carousel {
-      width: 70%;
+      width: 65%;
+      .carousel-control-prev,
+      .carousel-control-next {
+        display: none;
+      }
     }
   }
 `;
@@ -153,7 +157,7 @@ export const ProjectDescription = styled.p`
 
   @media ${devices.laptop} {
     font-size: 1rem;
-    width: 30%;
+    width: 35%;
     height: auto;
   }
 `;
@@ -173,7 +177,7 @@ export const CarouselImgContainer = styled.div`
 
   @media ${devices.laptop} {
     align-items: flex-start;
-    max-width: 980%;
+    max-width: 980px;
   }
 `;
 
@@ -202,7 +206,7 @@ export const InfosContainer = styled.div`
 
   @media ${devices.laptop} {
     div:nth-child(1) {
-      width: 20% ;
+      width: 20%;
     }
 
     div:nth-child(2) {
@@ -218,8 +222,6 @@ export const InfosContainer = styled.div`
 export const InfoThemeContainer = styled.div`
   margin: 0 1rem;
   width: 100%;
-
-
 `;
 
 export const InfosTitle = styled.h4`

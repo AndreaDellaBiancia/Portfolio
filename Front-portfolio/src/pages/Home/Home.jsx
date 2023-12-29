@@ -49,10 +49,13 @@ function Home() {
       let heigthExpContainer = 0;
       if (windowWidth > 1224) {
         heigthExpContainer =
-          (experieces.left.length + experieces.right.length) * 352;
-      } else {
+          (experieces.left.length + experieces.right.length) * 363;
+      } else if(windowWidth > 768) {
         heigthExpContainer =
-          (experieces.left.length + experieces.right.length) * 453;
+          (experieces.left.length + experieces.right.length) * 518;
+      }else{
+        heigthExpContainer =
+          (experieces.left.length + experieces.right.length) * 610;
       }
 
       setExperiencesContainerHeight(heigthExpContainer);
@@ -121,7 +124,7 @@ function Home() {
               className="line"
               style={{ height: ` ${scrollPosition - 5}%` }}
             ></div>
-            <LeftSide>
+            <LeftSide style={{marginTop: leftExperiences.length >= rightExperiences.length ? "" : "275px" }}>
               {leftExperiences.map((exp, index) => {
                 if (exp.project?.id != null) {
                   return (
@@ -138,6 +141,7 @@ function Home() {
                         key={index}
                         scrollPosition={scrollPosition}
                         {...exp}
+                        link={getSlug(exp.title)}
                       />
                     </Link>
                   );
@@ -153,7 +157,7 @@ function Home() {
               })}
             </LeftSide>
 
-            <RightSide>
+            <RightSide style={{marginTop: leftExperiences.length < rightExperiences.length ? "" : "275px" }}>
               {rightExperiences.map((exp, index) => {
                 if (exp.project?.id != null) {
                   return (

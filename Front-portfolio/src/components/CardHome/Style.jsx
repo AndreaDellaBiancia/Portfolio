@@ -9,23 +9,22 @@ export const CardContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: auto;
+  min-height: 500px;
   --animate-duration: 1s;
-
 
   @media ${devices.tablet} {
     padding: 0 15px;
     width: 80%;
-    min-height: 350px;
+    min-height: 450px;
   }
 
   @media ${devices.laptop} {
     padding: 0 15px;
     margin: ${(props) => props.$marginCard};
     flex-direction: column;
-    justify-content: flex-start;
-    min-height: 500px;
-
+    
+    min-height: 550px;
+    width: 90%;
     .show-img-card {
       transition: transform 1s;
     }
@@ -41,7 +40,6 @@ export const CardContainer = styled.div`
     margin: ${(props) => props.$marginCard};
     flex-direction: column;
     justify-content: flex-start;
-    max-height: 650px;
   }
 `;
 
