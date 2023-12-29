@@ -41,33 +41,34 @@ function ProjectDetails() {
   }, []);
 
   useEffect(() => {
-    let text = document.getElementById("text");
-    let splitText = text.textContent.split("");
-    function AjoutDeLettre(splitText, text) {
-      for (let i = 0; i < splitText.length; i++) {
-        text.innerHTML += splitText[i];
-        if (splitText[i] === "\n") {
-          text.innerHTML += "<br>";
-        }
-      }
-    }
-    text.innerHTML = "";
-    let i = 0;
-    if (window.innerWidth > 1224) {
-      setInterval(function () {
-        AjoutDeLettre(splitText, text);
-      }, 30);
+    if (project.description) {
+      let text = document.getElementById("text");
+      let splitText = project.description.split("");
       function AjoutDeLettre(splitText, text) {
         if (i < splitText.length) {
           text.innerHTML += splitText[i];
           if (splitText[i] === "\n") {
             text.innerHTML += "<br>";
           }
-          i++;
         }
+        i++;
       }
-    } else {
-      AjoutDeLettre(splitText, text);
+
+      function htmlize(text) {
+        return text.replace(/\n/g, "<br>");
+      }
+
+      let i = 0;
+      if (window.innerWidth > 1224) {
+        text.innerHTML = "";
+
+        setInterval(function () {
+          AjoutDeLettre(splitText, text);
+        }, 20);
+      } else {
+        const htmlText = htmlize(project.description)
+        text.innerHTML = htmlText;
+      }
     }
   }, [project.description]);
 
@@ -102,7 +103,7 @@ function ProjectDetails() {
         </ButtonsContainer>
       </Header>
       <CarouselDescriptionContainer>
-        <ProjectDescription id="text">{project.description}</ProjectDescription>
+        <ProjectDescription id="text"></ProjectDescription>
         <Carousel data-bs-theme="dark" id="carousel">
           {project.projectPictures?.map((slide) => (
             <Carousel.Item interval={3000}>
