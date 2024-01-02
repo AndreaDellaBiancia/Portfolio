@@ -27,6 +27,9 @@ function NavBar() {
             <Link to="projets" className="nav-item" onClick={closeMenu}>
               Projets
             </Link>
+            <Link to="compétences" className="nav-item" onClick={closeMenu}>
+              Compétences
+            </Link>
             <Link to="contacts" className="nav-item" onClick={closeMenu}>
               Contacts
             </Link>
