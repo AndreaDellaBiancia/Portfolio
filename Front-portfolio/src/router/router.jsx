@@ -4,6 +4,7 @@ import Home from "../pages/Home/Home";
 import NavBar from "../components/Navbar/Navbar";
 import Projects from "../pages/Projects/Projects";
 import ProjectDetails from "../pages/ProjectDetails/ProjectDetails";
+import Skills from "../pages/Skills/Skills";
 
 export const router = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ export const router = createBrowserRouter([
       {
         path: "/projets/:projectTitle",
         element: <ProjectDetails />,
+      },
+      {
+        path: "/compétences",
+        element: <Skills />,
       },
     ],
   },

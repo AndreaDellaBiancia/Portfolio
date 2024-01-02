@@ -28,6 +28,7 @@ export const Title = styled.h1`
 
   @media ${devices.laptop} {
     margin: 2rem auto;
+    font-weight: bold;
   }
 `;
 
@@ -156,7 +157,7 @@ export const ProjectDescription = styled.p`
   width: 100%;
 
   @media ${devices.laptop} {
-    font-size: 1rem;
+    font-size: 1.2rem;
     width: 35%;
     height: auto;
   }
@@ -255,6 +256,7 @@ export const InfosItemTechno = styled.li`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-right: 0.5rem;
 `;
 
 export const TechnoImg = styled.img`
@@ -262,6 +264,6 @@ export const TechnoImg = styled.img`
 
   @media ${devices.laptop} {
     width: 3rem;
-    margin-right: 0.5rem;
+  
   }
 `;

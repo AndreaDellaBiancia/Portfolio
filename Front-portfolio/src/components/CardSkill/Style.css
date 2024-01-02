@@ -1,0 +1,47 @@
+.card-skill{
+  width: 90%;
+  margin-top: 3rem;
+  box-shadow: 0px 15px 10px -5px rgba(128, 128, 128, 0.7);
+  animation-duration: 2s;
+}
+
+.card-skill-header{
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  font-size: 1.5rem;
+  height: 90px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-skill-title{
+  margin: 1.5rem auto;
+  font-weight: bold;
+}
+
+.card-skill-list{
+  font-size: 1.2rem;
+}
+
+.card-skill-list li{
+  margin-bottom: 0.8rem;
+}
+
+.card-skill img{
+  width: 2rem;
+  margin-right: 1rem;
+}
+
+@media (min-width: 770px  ) {
+  .card-skill{
+    width: 45%; 
+  }
+}
+
+@media (min-width: 1224px  ) {
+  .card-skill{
+    width: 24%;
+  }
+}
