@@ -6,6 +6,7 @@ import Projects from "../pages/Projects/Projects";
 import ProjectDetails from "../pages/ProjectDetails/ProjectDetails";
 import Skills from "../pages/Skills/Skills";
 import Contacts from "../pages/Contacts/Contacts";
+import ErrorPage from "../pages/Error/Error404";
 
 export const router = createBrowserRouter([
   {
@@ -36,6 +37,10 @@ export const router = createBrowserRouter([
       {
         path: "/contacts",
         element: <Contacts />,
+      },
+      {
+        path: "*", 
+        element: <ErrorPage />,
       },
     ],
   },
