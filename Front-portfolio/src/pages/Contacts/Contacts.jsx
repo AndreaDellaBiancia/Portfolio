@@ -3,7 +3,7 @@ import email from "./../../assets/images/contacts/gmail.png";
 import phone from "./../../assets/images/contacts/phone.png";
 import gitHub from "./../../assets/images/contacts/GitHub.png";
 import linkedin from "./../../assets/images/contacts/linkedin.png";
-import { ContactImg, ContactItem, ContactLink, ContactText, ContactsContainer, PageContainer, Title } from "./Style";
+import { ContactImg, ContactItem, ContactLink, ContactText, ContactsContainer, Cv, CvContainer, PageContainer, Title } from "./Style";
 
 
 
@@ -18,9 +18,9 @@ function Contacts() {
             <ContactItem><ContactLink href="https://github.com/AndreaDellaBiancia" target="__blank"><img src={gitHub} alt="GitHub" /><ContactText>GitHub</ContactText></ContactLink></ContactItem>
            
           </ContactsContainer>
-          <div style={{width: "50%"}}>
-            <img src={cv} alt="Curriculum" style={{width: "100%",  border: "1px solid #27384a"}} />
-          </div>
+          <CvContainer>
+            <Cv src={cv} alt="Curriculum" />
+          </CvContainer>
       </PageContainer>
   )
 }
