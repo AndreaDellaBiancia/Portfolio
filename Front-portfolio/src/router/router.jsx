@@ -5,6 +5,7 @@ import NavBar from "../components/Navbar/Navbar";
 import Projects from "../pages/Projects/Projects";
 import ProjectDetails from "../pages/ProjectDetails/ProjectDetails";
 import Skills from "../pages/Skills/Skills";
+import Contacts from "../pages/Contacts/Contacts";
 
 export const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ export const router = createBrowserRouter([
       {
         path: "/compétences",
         element: <Skills />,
+      },
+      {
+        path: "/contacts",
+        element: <Contacts />,
       },
     ],
   },
