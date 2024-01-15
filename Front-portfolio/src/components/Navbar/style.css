@@ -22,6 +22,11 @@
   border-radius: 13px 40px 22px  ;
  }
 
+ .nav-item:nth-child(4):hover{
+  background: linear-gradient(45deg, #E6A8FD, #0CAAD9) ;
+  border-radius: 40px 15px 25px  ;
+ }
+
 
 
 
