@@ -15,6 +15,7 @@ function NavBar() {
   return (
     <Navbar expand="lg" expanded={expanded}>
       <Container className="m-0">
+      
         <Navbar.Toggle
           aria-controls="basic-navbar-nav"
           onClick={() => setExpanded(!expanded)}
@@ -35,6 +36,7 @@ function NavBar() {
             </Link>
           </Nav>
         </Navbar.Collapse>
+        <Navbar.Brand href="#home">Portfolio <br /> Andrea Della Biancia</Navbar.Brand>
       </Container>
     </Navbar>
   );

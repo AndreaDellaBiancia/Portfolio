@@ -6,12 +6,15 @@ import Projects from "../pages/Projects/Projects";
 import ProjectDetails from "../pages/ProjectDetails/ProjectDetails";
 import Skills from "../pages/Skills/Skills";
 import Contacts from "../pages/Contacts/Contacts";
+import ErrorPage from "../pages/Error/Error404";
+import ScrollToTop from "../Tools/tools";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: (
       <div>
+        <ScrollToTop />
         <NavBar />
         <Outlet />
       </div>
@@ -36,6 +39,10 @@ export const router = createBrowserRouter([
       {
         path: "/contacts",
         element: <Contacts />,
+      },
+      {
+        path: "*",
+        element: <ErrorPage />,
       },
     ],
   },
