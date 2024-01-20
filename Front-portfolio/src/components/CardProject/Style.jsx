@@ -24,8 +24,8 @@ export const CardContainer = styled.div`
   }
 
   @media ${devices.laptop} {
-    height: 600px;
-    width: 800px;
+    height: 450px;
+    width: 680px;
   }
 `;
 

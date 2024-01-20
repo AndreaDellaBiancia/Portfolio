@@ -8,7 +8,7 @@ export const ImagePc = styled.img`
     width: 250px;
     position: absolute;
     right: 2rem;
-    top: 10rem;
+    top: 6rem;
   }
 `;
 

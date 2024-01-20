@@ -55,7 +55,7 @@ function Home() {
           (experieces.left.length + experieces.right.length) * 518;
       }else{
         heigthExpContainer =
-          (experieces.left.length + experieces.right.length) * 610;
+          (experieces.left.length + experieces.right.length) * 604;
       }
 
       setExperiencesContainerHeight(heigthExpContainer);

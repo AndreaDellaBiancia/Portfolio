@@ -443,11 +443,12 @@ export const Hangar = styled.div`
 `;
 
 export const Smoke = styled.div`
+  display: none;
   width: 5rem;
   height: 5rem;
   position: absolute;
   right: 0rem;
-  top: 0rem;
+  top: 0.7rem;
 
   img {
     width: 100%;
@@ -455,6 +456,7 @@ export const Smoke = styled.div`
   }
 
   @media ${devices.laptop} {
+    display: block;
     position: absolute;
     left: 50%;
     top: -3rem;
